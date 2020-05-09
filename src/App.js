@@ -3,7 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import SpotifyLogin from "react-spotify-login";
 
-const onSuccess = (response) => console.log(response);
+const onSuccess = (response) => {
+  localStorage.setItem("spotify-access-token", response.access_token);
+};
 const onFailure = (response) => console.error(response);
 
 function App() {
@@ -11,12 +13,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <SpotifyLogin
-          clientId="d4f7871dc21442cc985d84881825abc5"
-          redirectUri="http://localhost:3000"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-        />
+        {localStorage.getItem("spotify-access-token") === null && (
+          <SpotifyLogin
+            clientId="d4f7871dc21442cc985d84881825abc5"
+            redirectUri="http://localhost:3000"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+          />
+        )}
       </header>
     </div>
   );
