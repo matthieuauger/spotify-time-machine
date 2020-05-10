@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const spotifyApi = new SpotifyWebApi();
     spotifyApi.setAccessToken(localStorage.getItem("spotify-access-token"));
-    spotifyApi.getMyRecentlyPlayedTracks({ limit: 10 }, function (err, data) {
+    spotifyApi.getMyRecentlyPlayedTracks({ limit: 50 }, function (err, data) {
       if (err) {
         console.error("Something went wrong!");
       } else {
