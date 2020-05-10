@@ -26,15 +26,13 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {localStorage.getItem("spotify-access-token") === null && (
-          <SpotifyLogin
-            clientId="d4f7871dc21442cc985d84881825abc5"
-            redirectUri="http://localhost:8888"
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            scope="user-read-recently-played"
-          />
-        )}
+        <SpotifyLogin
+          clientId="d4f7871dc21442cc985d84881825abc5"
+          redirectUri={process.env.REACT_APP_BASE_URL}
+          onSuccess={onSuccess}
+          onFailure={onFailure}
+          scope="user-read-recently-played"
+        />
       </header>
     </div>
   );
